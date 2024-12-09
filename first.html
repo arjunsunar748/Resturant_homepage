@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Restro</title>
+    <!-- Link to Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            color: #333;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: #38f338;
+        }
+        a:hover {
+            color: #fff;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: black;
+            padding: 10 20px;
+            position:absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+          
+        }
+        .menu-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #38f338;
+            padding-right: 10px;
+            margin-right: 10px;
+        }
+        .menu-toggle a img {
+            height: 90px;
+            width: auto;
+          
+        }
+        ul {
+            display: flex;
+            list-style: none;
+        }
+        li {
+            margin: 0 25px;
+        }
+        ul.show {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background: black;
+            width: 100%;
+            top: 60px;
+            left: 0;
+        }
+        ul li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            color: #38f338;
+        }
+        ul li a:hover {
+            color: white;
+        }
+        .menu-toggle i {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            ul {
+                display: none;
+            }
+            ul.show {
+                display: flex;
+            }
+            .menu-toggle i {
+                display: block;
+            }
+
+   
+        }
+       
+        
+
+        @media (max-width: 480px) {
+            #slider {
+                aspect-ratio: 1 / 1;
+                height:350px;
+            }
+        }
+        .hero {
+        height: 100vh;
+        background: url('piz.jpg') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Adds a dark overlay */
+        backdrop-filter: blur(5px); /* Blurs the image */
+        z-index: 1; /* Places the blur above the background image */
+    }
+    .hero div {
+        position: relative;
+        z-index: 2; /* Ensures content is above the blur */
+    }
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+    }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('piz.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .about, .menu, .reservation, .contact {
+            background: white;
+            margin-top: 20px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Menu Section */
+        .menu-item {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            align-items: center;
+        }
+        .menu-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .menu-item h3 {
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+    /* Reservation Section */
+    .reservation form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .reservation input, .reservation select, .reservation button {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1rem;
+    }
+    .reservation button {
+        background: #38f338;
+        color: white;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      
+    }
+    .reservation button:hover {
+        background: #2ea32e;
+    }
+    /* General Styles */ 
+.contact {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column; /* Stack items by default */
+    align-items: center;
+    gap: 1rem; /* Space between items */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.contact-item i {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    color: #007BFF; /* Icon color */
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .contact-info {
+        flex-direction: row; /* Arrange items in a row for larger screens */
+        justify-content: center;
+    }
+}
+
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .contact-info div {
+            padding: 20px;
+            border-radius: 8px;
+            background: #0ac10a;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            font-weight: 300;
+        }
+        
+        .contact-info div i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+       .open-section{
+        text-align:center;
+       }
+       /* introduction */
+       .intro_1{
+
+        text-align: left;
+       }
+
+       /* desigining photo */
+       #slider {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        #slider img {
+            width: 100%;
+            height:100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #slider img.active {
+            opacity: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="menu-toggle">
+            <a href="#"><img src="1 (1).png" alt="A1 Restro Logo"></a>
+            <i class="fas fa-bars" id="menu-icon"></i>
+        </div>
+        <ul id="menu">
+            <li><a href="#home"><i class="fas fa-home"></i> HOME</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> ABOUT</a></li>
+            <li><a href="#menu"><i class="fas fa-utensils"></i> MENU</a></li>
+            <li><a href="#reservation"><i class="fas fa-calendar-alt"></i> RESERVATION</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div>
+            <h1>Welcome to A1 Restro</h1>
+            <p>Enjoy the finest dining experience with a touch of elegance. Reserve your table today and experience the best moment of life.</p>
+           
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2><i class="fas fa-info-circle"></i> About Us</h2>
+        <p>We are dedicated to providing you with an unforgettable dining experience. Our chefs use the finest ingredients to create culinary masterpieces that are sure to impress.</p>
+        <br>
+        <br>
+        <p class="intro_1">Welcome to A1 Restro!
+            The full name of A1 restro is A one Restaurant and Bar. The location of A1 restro is Sharada Municipality-6, Barala, Salyan, Nepal. And it having best mountains view.
+            And having facility of delicious food.<br>
+            <br>
+            At A1 Restro, we serve not just food but experiences. Known for its exceptional quality and flavors, A1 Restro offers a blend of traditional and modern cuisines to satisfy every palate. Whether you're in the mood for a hearty meal or a light snack, our carefully curated menu has something for everyone. With a cozy ambiance, top-notch service, and a commitment to excellence, A1 Restro is the perfect place for family dinners, date nights, or casual outings. Experience dining at its best—where every dish is made with love and passion.
+            
+            Would you like to customize this further? 😊</p>
+    </section>
+    <div id="slider">
+        <img src="restro_photo 1.jpg" alt="Image 1" class="active">
+        <img src="restro_photo 4.jpg" alt="Image 2">
+        <img src="R.jpg" alt="Image 3">
+    </div>
+       
+    </div>
+    <div class="open-section">
+    <h2 class="section-heading">Opening Times</h2>
+					<p class="text-muted">
+						<span>Monday—Thursday: 08:00 — 22:00</span><br>
+						<span>Friday—Saturday: 09:00 — 23:00</span><br>
+						<span>Sunday: 10:00 — 17:00</span>
+					</p>
+                </div>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <h2><i class="fas fa-utensils"></i> Our Menu</h2>
+        <div class="menu-item">
+            <img src="download.jpg" alt="Dish 1">
+            <div>
+                <h3> <i class="fas fa-bowl-food"></i>CHAU-MEIN</h3>
+                <p>Perfectly cooked by our chefs with our secret masala.</p>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="OIF.jpg" alt="Dish 2">
+            <div>
+                <h3><i class="fas fa-hamburger"></i> MO-MO</h3>
+                <p>Juicy steak cooked to perfection, served with tomato pickles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <!-- Reservation Section -->
+<section class="reservation" id="reservation">
+    <h2><i class="fas fa-calendar-alt"></i> Make a Reservation</h2>
+    <form action="php connection.php" method="POST" id="reservation-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <select typle="people" name="people" required>
+            <option value="" disabled selected>Number of People</option>
+            <option value="1">1 </option>
+            <option value="2">2 </option>
+            <option value="3">3 </option>
+            <option value="4">4 </option>
+            <option value="5+">5+ </option>
+        </select>
+        <button type="submit">Book Now</button>
+    </form>
+    
+</section>
+
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i> Sharada Municipality-6, Barala, Salyan
+        </div>
+        <br>
+        <div class="contact-item">
+            <i class="fas fa-phone-alt"></i> +977 9812834704
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i> as3750141@gmail.com
+        </div>
+    </div>
+</section>
+
+
+        <!-- Footer Section -->
+<footer style="background-color: #333; color: white; padding: 20px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; flex-wrap: wrap; justify-content: space-between;">
+      
+      <!-- About Section -->
+      <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+        <h3>About Us</h3>
+        <p>
+          Welcome to [Your Restaurant Name]! We serve delicious meals made from the freshest ingredients. Visit us for a memorable dining experience.
+        </p>
+      </div>
+      
+      
+      <!-- Contact Information -->
+      <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+        <h3>Contact Us</h3>
+        <p>📍 Road no.1, Shreenagar City</p>
+        <p>📞 +977 9749280784</p>
+        <p>✉️ arjun11sunar22@gmail.com</p>
+      </div>
+      
+      <!-- Social Media -->
+      <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+        <h3>Follow Us</h3>
+        <div style="display: flex; gap: 10px;">
+          <a href="https://www.facebook.com/share/cPEjLeBsAGCuX7VD/?mibextid=qi2Omg" style="color: white;"><img src="Facebook_Logo_2023.png" alt="Facebook" style="width: 30px;"></a>
+          <br>
+          <br>
+          <a href="https://www.instagram.com/ar359jun?igsh=NzN6OTQ0OHl4ZWds" style="color: white;"><img src="Instagram_icon.png.webp" alt="Instagram" style="width: 30px;"></a>
+          <br>
+          <a href="https://www.arjun11sunar22@gmail.com" style="color: white;"><img src="gmail-mail-icon-for-web-design-free-png.webp" alt="Gmail" style="width: 30px;"></a>
+          <br>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright -->
+    <div style="text-align: center; padding-top: 10px; border-top: 1px solid #555;">
+      <p>&copy; 2024 [A one Restro]. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+
+
+
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const menu = document.getElementById('menu');
+
+        menuIcon.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+    
+
+    <!-- js for form submission -->
+    <script>
+        document.getElementById("reservation-form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent form submission for demo purposes
+            alert("Reservation submitted successfully!");
+        });
+    </script>
+    <!-- js for image slide -->
+    <script>
+        const images = document.querySelectorAll("#slider img");
+        let currentIndex = 0;
+
+        function changeImage() {
+            images[currentIndex].classList.remove("active");
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+            images[currentIndex].classList.add("active");
+        }
+
+        setInterval(changeImage, 3000); // Change image every 3 seconds
+    </script>
+    
+</body>
+</html>
